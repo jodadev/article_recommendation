@@ -1,0 +1,49 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Article Recommender
+
+        // CSS
+        link(rel="stylesheet", href="css/global.css")
+        link(rel="stylesheet", href="css/index.css")
+        // Bootstrap
+        <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+        script(defer src="js/fetch.js") 
+    body
+      main 
+        div#hero
+          h1 A Blog Site
+
+        div#recommendation.row.border
+          div.col-1
+          
+          // Recommendation
+          div.col-5.text-center
+            
+            // Recommendation section
+            div
+              h2.text-decoration-underline Recommended Article
+              div.card.p-3
+                h3(id='title')=recommended ? recommended.title : 'Unable to load - AI not working.'
+                - if (recommended)
+                  h5(id='tag')='Tag: "'+ recommended.tag +'"'
+                  p(id='content')=recommended.content 
+                
+                - if (recommended)
+                  div.btn-group.gap-3(role='group')
+                    button.btn.btn-primary.user_input(type="submit" id='like' name=recommended.tag ) LIKE
+                    button.btn.btn-danger.user_input(type="submit" id='ignore' name=recommended.tag) IGNORE
+
+          // Results
+          div.col-5
+            div
+              h2 AI Time-Step Results
+              div#results
+                h4 waiting for user input...
+
+          div.col-1
+        
+        include ./components/information

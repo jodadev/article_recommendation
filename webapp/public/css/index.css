@@ -1,0 +1,28 @@
+
+#recommendation{
+    margin: 0;
+    height: 80%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border: 1px solid black;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid black;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+
+
+

@@ -1,0 +1,64 @@
+html{   
+    box-sizing: border-box;
+}
+*,*::before,::after{
+    box-sizing: inherit;
+    /* Reset ALL elements default margins and paddings */
+    margin: 0;
+    padding: 0;
+}
+body{
+    /* 
+    Don't use vw because it will ignore the vertical scroll-bar and 
+    push the width beyond viewport causing horizontal scroll-bar  
+    */
+    min-height: 100svh;
+    max-width: 100vw;
+    width: 100vw;
+
+    /* Placed here instead of HTML because we are using custom google font that's not loaded yet */
+    font-family: 'Asap Condensed', sans-serif;
+    background-color: var(--background-color); 
+}
+main{
+    width: 100%;
+    height: 100svh;
+}
+
+#hero{
+    display: flex;
+    height: 10%;
+    width: 100%;
+    text-align: center;
+    background-color: black;
+    color: aliceblue;
+    justify-content: center;
+    align-items: center;
+}
+#information{
+    margin-top: 0;
+    margin-bottom: 0;
+    border-top: solid 1px black;
+    background-color: rgba(128, 128, 128, 0.305);
+}
+
+/***********************/
+/*  CUSTOM SCROLL-BAR  */
+/***********************/
+/* width */
+::-webkit-scrollbar {
+    
+    width: 0px;
+} 
+/* Track */
+::-webkit-scrollbar-track {
+    background: var(--black-transparent-25);
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-color);
+}

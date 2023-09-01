@@ -1,0 +1,54 @@
+div#information.p-3
+    h3.display-2.text-center Machine Learning Information 
+    h4 Overview
+    p The Machine Learning branch used in this app is Reinforcement Learning. 
+        | The problem at glance is the k-Armed Bandit. The agent is tasked with
+        | a continuous task of identifying the user's preference for articles based
+        | on their assigned tag, then recommends an article with that tag at random. 
+        | The base route of this site('/') will select an action from the ML API, which maps to a tag, 
+        | then use it to filter out articles with this tag and randomly select an 
+        | article to display on the page under "Recommended Article". 
+        | The user may select "Like" or "Ignore" for the current
+        | article being displayed. This sends a signal to the ML API about the current
+        | article's tag, and user selection. The agent receives feedback (reward or 
+        | punishment) and learns from this time-step. Results will return and be displayed
+        | of this time-step along with a new recommended article. Over time, the AI will learn what 
+        | tag the user prefers and use this tag to find an article to recommend. The Agent will 
+        | exploit its current knowledge(use the Q-Table) but occasionally explore(randomly select a tag) - this will be
+        | viewed as articles being recommended based on a tag with the highest Q-Value, 
+        | let's say "Health", but every once in a while the Agent will show an article
+        | with a different tag to see if the user prefers something different, let's say "Tech". The agent
+        | will continue to adapt to the users selections and what articles the user prefers, forever.
+    p Note: a limit is placed on the number of requests you may make when providing input including the 
+    | base route. Current rate is 25 requests with a minute cool down. 
+    h4 Facts of Implementation and Development
+    h6 Attempt One
+    ul
+        li UCB (Upper Confidence Bound) is used for the Action Selection Method.
+        li IA (Incremental Averaging) or Sample Average Method is used for the Learning Method.
+        li Action counts are incremented - used with IA to solve for sampling (grows infinitely).
+        li There are 4 arms to this bandit problem which represent article tags. In order: ["Tech", "News", "Health", "Money"].
+        li Reward distribution is based on the user selecting "Like"(+1) or "Ignore"(0). There is a simulated noise to the rewards.
+        
+    h6 Attempt Two
+    ul
+        li GBA (Gradient Bandit Algorithm) replaced k-Armed.
+        li Softmax function is used for action selection - discriminately chooses non-greedy.
+        li Agent uses H-array(Preference) to save values (grows infinitely positive/negative).
+        li Track time-step(t), used in learning method (grows infinitely).
+        li There are 4 arms to this bandit problem which represent article tags. In order: ["Tech", "News", "Health", "Money"].
+        li Reward distribution is based on the user selecting "Like"(+1) or "Ignore"(0). There is a simulated noise to the rewards.
+    
+    h6 Attempt Two - Current
+    ul
+        li ERWA (Exponential Recency-Weighted Average) is the Learning Method.
+        li E-Greedy Action Selection Method - indiscriminately chooses non-greedy.
+        li There are 4 arms to this bandit problem which represent article tags. In order: ["Tech", "News", "Health", "Money"].
+        li Reward distribution is based on the user selecting "Like"(+1) or "Ignore"(0). There is a simulated noise to the rewards.
+
+footer.my-0.bg-dark.text-white.text-center
+    div.btn-group.gap-5
+        a(href="https://github.com/jodadev/article_recommendation" target='_blank' rel='noreferrer') Github Repo 
+        a(href="https://jodadev.com" target='_blank' rel='noreferrer') Website
+        a(href="https://twitter.com/jodadev2" target='_blank' rel='noreferrer') Twitter
+    p.small &#169; 2023. Developed by JODA. Purpose: Portfolio.  
