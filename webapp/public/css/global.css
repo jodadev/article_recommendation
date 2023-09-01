@@ -25,22 +25,7 @@ main{
     height: 100svh;
 }
 
-#hero{
-    display: flex;
-    height: 10%;
-    width: 100%;
-    text-align: center;
-    background-color: black;
-    color: aliceblue;
-    justify-content: center;
-    align-items: center;
-}
-#information{
-    margin-top: 0;
-    margin-bottom: 0;
-    border-top: solid 1px black;
-    background-color: rgba(128, 128, 128, 0.305);
-}
+
 
 /***********************/
 /*  CUSTOM SCROLL-BAR  */

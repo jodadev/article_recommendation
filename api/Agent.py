@@ -126,12 +126,17 @@ class ERWA_AGENT (Agent):
 
     # e-greedy
     def choose_action(self):
+        highest_q_val = self.Q.index(max(self.Q))
         if random.random() < self.epsilon:
             self.selection_state = 'Exploration'
-            return random.choice(range(self.k))
+            # set action to the highest q-value index then attempt to find another another besides it 
+            action = highest_q_val
+            while action == highest_q_val:
+                action = random.choice(range(self.k))
+            return action
         else:
             self.selection_state = 'Exploitation'
-            return self.Q.index(max(self.Q))
+            return highest_q_val
 
     def learn(self, action, reward):
         # convert action text to index

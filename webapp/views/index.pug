@@ -18,10 +18,10 @@ html(lang="en")
           h1 A Blog Site
 
         div#recommendation.row.border
-          div.col-1
+          div.col-0.col-md-1
           
           // Recommendation
-          div.col-5.text-center
+          div.col-12.col-md-5.text-center
             
             // Recommendation section
             div
@@ -38,12 +38,12 @@ html(lang="en")
                     button.btn.btn-danger.user_input(type="submit" id='ignore' name=recommended.tag) IGNORE
 
           // Results
-          div.col-5
+          div.col-12.col-md-5
             div
               h2 AI Time-Step Results
               div#results
                 h4 waiting for user input...
 
-          div.col-1
+          div.col-0.col-md-1
         
         include ./components/information

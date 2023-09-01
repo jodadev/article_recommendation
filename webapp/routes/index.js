@@ -52,7 +52,7 @@ const rateLimitMiddleware = (req, res, next) => {
 
 // Route to initialize new agent 
 router.get('/', rateLimitMiddleware, async (req,res)=>{
-    fetch('https://ml.jodadev.com/initialize')
+    fetch(process.env.FETCH_URL+'/initialize')
     .then(response=>response.json())
     .then(data=>{
         // Render page with article data
@@ -74,7 +74,7 @@ router.post('/learn', rateLimitMiddleware,(req,res)=>{
     }
   
     // send request to ML API  
-    fetch('https://ml.jodadev.com/learn',{
+    fetch(process.env.FETCH_URL+'/learn',{
         method: "POST",
         headers: {
             "Content-Type": "application/json",

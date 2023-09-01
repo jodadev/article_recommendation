@@ -1,3 +1,14 @@
+# V1.1.0
+
+## Changes
+
+- E-Greedy - when exploring, the tag with highest Q-Value will no longer be considered.
+- Made app mobile friendly.
+
+## Minor Chnage
+
+- Added dotenv library to handle dynamic Fetch URL between Development and Production Environment
+
 # V1.0.1
 
 ## Fixes
