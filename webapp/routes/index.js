@@ -52,7 +52,7 @@ const rateLimitMiddleware = (req, res, next) => {
 
 // Route to initialize new agent 
 router.get('/', rateLimitMiddleware, async (req,res)=>{
-    fetch('http://127.0.0.1:5000/initialize')
+    fetch('https://ml.jodadev.com/initialize')
     .then(response=>response.json())
     .then(data=>{
         // Render page with article data
@@ -74,7 +74,7 @@ router.post('/learn', rateLimitMiddleware,(req,res)=>{
     }
   
     // send request to ML API  
-    fetch('http://127.0.0.1:5000/learn',{
+    fetch('https://ml.jodadev.com/learn',{
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -88,19 +88,7 @@ router.post('/learn', rateLimitMiddleware,(req,res)=>{
             // Gets the index of the max and min Q-Value in Q-Table
             max = res_data.Q.indexOf(Math.max(...res_data.Q))
             min = res_data.Q.indexOf(Math.min(...res_data.Q))
-            // Signal a redirect to the result page and pass response data to it
-            // res.redirect(url.format({
-            //     pathname:'/result',
-            //     query: {
-            //         Q: res_data.Q,
-            //         selection_state: res_data.selection_state,
-            //         alpha: res_data.alpha,
-            //         epsilon: res_data.epsilon,
-            //         // Get tag names using index from database
-            //         max: database.tags[max],
-            //         min: database.tags[min]
-            //     }
-            // }))
+
             res.status(200).json({
                 Q: res_data.Q,
                 selection_state: res_data.selection_state,

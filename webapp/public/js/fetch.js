@@ -30,8 +30,7 @@ function user_button_input(e)
     }
     
     // send information to server
-    // TODO Replace url with live URL - requires CORs
-    fetch('https://recommendation.jodadev.com/learn',{
+    fetch('/learn',{
         method: "POST",
         headers: {
             "Content-Type": "application/json",

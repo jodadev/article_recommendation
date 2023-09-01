@@ -1,22 +1,27 @@
 from flask import Flask, jsonify, request
 from Agent import UCB_AGENT, GBA_AGENT, ERWA_AGENT
 from Environment import Environment
+from gevent.pywsgi import WSGIServer
+from flask_cors import CORS
+
 
 agent = ERWA_AGENT() # Best Agent for Problem
 env = Environment()
 app = Flask(__name__)
+CORS(app)
 
 """ NOTE ROUTES INFO 
     The API only has two routes.
-        - /get_action 
-            which will make the agent choose an action(tag) and 
+        - /initialize 
+            which will make reset the agent, choose an action(tag) and 
             return it back to the requester.
 
         - /learn 
             which will have the agent learn based on the user input,
             whether the user liked what the agent recommended or not, and reward
             or not reward the agent. The return data is simply for the requester
-            to view the results of the agent durning that time-step.
+            to view the results of the agent durning that time-step. A new action
+            will be chosen and returned as well.
 """
 
 @app.route('/initialize', methods=['GET'])
@@ -56,4 +61,8 @@ def learn():
 
 
 if __name__ == '__main__':
-    app.run(host='127.0.0.1', port=5000)
+    # DEV
+    #app.run(host='0.0.0.0', port=5000)
+    # PRODUCTION
+    http_server = WSGIServer(('', 5000), app)
+    http_server.serve_forever()
